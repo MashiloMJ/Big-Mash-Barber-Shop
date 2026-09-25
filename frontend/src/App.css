@@ -1,0 +1,1045 @@
+/* ============================================
+   BIG MASH BARBER SHOP
+   MAIN STYLES
+============================================ */
+
+
+/* ============================================
+   GENERAL
+============================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ============================================
+   NAVBAR
+============================================ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: #080808;
+
+    border-bottom: 1px solid #222;
+}
+
+.nav-container {
+    width: min(1200px, 92%);
+    margin: auto;
+
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #d7a84b;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d7a84b;
+}
+
+.menu-button {
+    display: none;
+
+    background: none;
+    color: white;
+
+    border: none;
+
+    font-size: 25px;
+}
+
+
+/* ============================================
+   HERO
+============================================ */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.68),
+            rgba(0, 0, 0, 0.75)
+        ),
+        url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    width: min(1200px, 92%);
+    margin: auto;
+
+    color: white;
+}
+
+.hero-small {
+    color: #d7a84b;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 90px);
+
+    line-height: 0.95;
+
+    margin: 20px 0;
+
+    font-weight: 900;
+}
+
+.hero h1 span {
+    color: #d7a84b;
+}
+
+.hero-text {
+    max-width: 600px;
+
+    line-height: 1.7;
+
+    color: #ddd;
+}
+
+.primary-button {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 16px 28px;
+
+    background: #d7a84b;
+    color: #111;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border-radius: 4px;
+
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ============================================
+   SECTIONS
+============================================ */
+
+.section {
+    width: min(1200px, 92%);
+
+    margin: auto;
+
+    padding: 100px 0;
+}
+
+.dark-section {
+    width: 100%;
+
+    padding-left: 4%;
+    padding-right: 4%;
+
+    background: #111;
+    color: white;
+}
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.section-heading p {
+    color: #b88632;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+
+    margin: 12px 0;
+
+    font-weight: 900;
+}
+
+
+/* ============================================
+   BARBERS
+============================================ */
+
+.barber-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.barber-card {
+    background: white;
+
+    border: 2px solid transparent;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.barber-card:hover {
+    transform: translateY(-8px);
+}
+
+.barber-card.selected {
+    border-color: #d7a84b;
+}
+
+.image-wrapper {
+    height: 300px;
+
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.barber-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    font-size: 28px;
+
+    margin: 0 0 8px;
+}
+
+.card-content .specialty {
+    color: #b88632;
+
+    font-weight: bold;
+}
+
+.card-content p {
+    color: #666;
+
+    line-height: 1.6;
+}
+
+.card-content button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    background: #111;
+    color: white;
+
+    border: none;
+
+    border-radius: 4px;
+
+    font-weight: bold;
+}
+
+.barber-card.selected .card-content button {
+    background: #d7a84b;
+    color: #111;
+}
+
+
+/* ============================================
+   HAIRSTYLES
+============================================ */
+
+.style-grid {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.style-card {
+    position: relative;
+
+    height: 390px;
+
+    overflow: hidden;
+
+    border: 3px solid transparent;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.style-card.selected {
+    border-color: #d7a84b;
+}
+
+.style-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.style-card:hover img {
+    transform: scale(1.08);
+}
+
+.style-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 30px 20px 20px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.9)
+        );
+}
+
+.style-overlay h3 {
+    margin: 0;
+
+    font-size: 23px;
+}
+
+.style-overlay p {
+    color: #d7a84b;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.selected-badge {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    padding: 8px 12px;
+
+    background: #d7a84b;
+    color: #111;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ============================================
+   BOOKING
+============================================ */
+
+.booking-section {
+    max-width: 1000px;
+}
+
+.booking-step {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.step-number {
+    min-width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #111;
+    color: #d7a84b;
+
+    border-radius: 50%;
+
+    font-weight: bold;
+}
+
+.booking-step h3 {
+    margin: 0 0 5px;
+}
+
+.booking-step p {
+    margin: 0;
+
+    color: #666;
+}
+
+.booking-field input {
+    display: block;
+
+    margin-top: 12px;
+
+    padding: 13px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+}
+
+
+/* ============================================
+   TIME SLOTS
+============================================ */
+
+.slots-container {
+    margin: 35px 0;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.slot-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.slot {
+    padding: 13px;
+
+    background: #f5f5f5;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+.slot:hover,
+.slot.selected {
+    background: #d7a84b;
+
+    border-color: #d7a84b;
+
+    color: #111;
+}
+
+.empty-message {
+    color: #888;
+}
+
+
+/* ============================================
+   CUSTOMER DETAILS
+============================================ */
+
+.details-box,
+.payment-box {
+    margin-top: 40px;
+
+    padding: 35px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.details-box h3,
+.payment-box h3 {
+    margin-top: 0;
+
+    font-size: 28px;
+}
+
+.details-box > p,
+.payment-box > p {
+    color: #666;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 25px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #d7a84b;
+}
+
+
+/* ============================================
+   PAYMENT
+============================================ */
+
+.payment-methods {
+    display: flex;
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.payment-method {
+    padding: 14px 25px;
+
+    border: 1px solid #ccc;
+
+    background: #f5f5f5;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+.payment-method.selected {
+    background: #111;
+
+    color: white;
+
+    border-color: #111;
+}
+
+.payment-summary {
+    margin-top: 30px;
+
+    border-top: 1px solid #ddd;
+}
+
+.payment-summary > div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.payment-summary span {
+    color: #666;
+}
+
+.payment-summary .total {
+    font-size: 22px;
+}
+
+.payment-summary .total strong {
+    color: #b88632;
+}
+
+.confirm-button {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    background: #d7a84b;
+    color: #111;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    font-weight: 900;
+}
+
+.confirm-button:hover {
+    background: #c3953b;
+}
+
+.confirm-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+.error-message {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #ffe6e6;
+
+    color: #a00000;
+
+    border-radius: 5px;
+}
+
+
+/* ============================================
+   CONFIRMATION
+============================================ */
+
+.confirmation-section {
+    padding: 100px 20px;
+
+    background: #111;
+}
+
+.confirmation-card {
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 50px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d7a84b;
+
+    border-radius: 50%;
+
+    font-size: 35px;
+}
+
+.success-label {
+    margin-top: 25px;
+
+    color: #b88632;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.confirmation-card h2 {
+    font-size: 40px;
+
+    margin: 10px 0;
+}
+
+.confirmation-card > p {
+    color: #666;
+}
+
+.booking-receipt {
+    margin-top: 35px;
+
+    text-align: left;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.booking-receipt div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 16px 20px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.booking-receipt div:last-child {
+    border-bottom: none;
+}
+
+.booking-receipt span {
+    color: #777;
+}
+
+.confirmation-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.print-button,
+.new-booking-button {
+    flex: 1;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+.print-button {
+    background: #111;
+    color: white;
+}
+
+.new-booking-button {
+    background: #d7a84b;
+    color: #111;
+}
+
+
+/* ============================================
+   FOOTER
+============================================ */
+
+footer {
+    background: #050505;
+
+    color: white;
+}
+
+.footer-content {
+    width: min(1200px, 92%);
+
+    margin: auto;
+
+    padding: 70px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 50px;
+}
+
+.footer-brand h2 {
+    font-size: 30px;
+}
+
+.footer-brand span {
+    color: #d7a84b;
+}
+
+.footer-brand p {
+    color: #999;
+
+    line-height: 1.7;
+}
+
+.footer-column h4 {
+    color: #d7a84b;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+}
+
+.footer-column p {
+    color: #999;
+
+    margin: 8px 0;
+}
+
+.footer-column a {
+    display: block;
+
+    color: #999;
+
+    text-decoration: none;
+
+    margin: 10px 0;
+}
+
+.footer-column a:hover {
+    color: #d7a84b;
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 900px) {
+
+    .barber-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .style-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .footer-content {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .nav-container {
+        min-height: 65px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        background: #080808;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+
+    .hero {
+        min-height: 550px;
+    }
+
+
+    .section {
+        padding: 70px 0;
+    }
+
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+
+    .barber-grid,
+    .style-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .style-card {
+        height: 350px;
+    }
+
+
+    .slot-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+
+    .details-box,
+    .payment-box {
+        padding: 25px;
+    }
+
+
+    .payment-methods {
+        flex-direction: column;
+    }
+
+
+    .confirmation-card {
+        padding: 30px 20px;
+    }
+
+
+    .confirmation-buttons {
+        flex-direction: column;
+    }
+
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+}
