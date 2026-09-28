@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Big Mash Barber Shop//Booking//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:big-mash-1790567240839@bigmash.co.za
+DTSTART:20261022T113000
+DTEND:20261022T120000
+SUMMARY:Big Mash Barber Shop - High Fade
+DESCRIPTION:Big Mash Barber Shop appointment\nService: High Fade\nBarber: David\nPrice: R200.00\nCustomer: Piet\nEmail: Piet@numberone.co.za
+LOCATION:Shop 30B\, Nelson Mandela Square\, 5th Street\, Sandton\, Gauteng\, 2031\, South Africa
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

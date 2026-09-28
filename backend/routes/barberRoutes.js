@@ -3,9 +3,10 @@ const router = express.Router();
 
 const pool = require("../db");
 
-// ============================================
+
+// =====================================================
 // GET ALL BARBERS
-// ============================================
+// =====================================================
 
 router.get("/", async (req, res) => {
 
@@ -21,63 +22,83 @@ router.get("/", async (req, res) => {
 
     } catch (error) {
 
-        console.error(error);
+        console.error("GET BARBERS ERROR:", error);
 
         res.status(500).json({
-            message: "Unable to load barbers"
+            error: "Failed to load barbers",
+            details: error.message
         });
     }
 });
 
 
-// ============================================
-// GET AVAILABLE TIMES FOR A BARBER
-// ============================================
+// =====================================================
+// GET AVAILABLE TIME SLOTS
+// =====================================================
 
 router.get("/:id/availability", async (req, res) => {
 
-    const barberId = req.params.id;
-    const date = req.query.date;
-
     try {
 
-        if (!date) {
+        const barberId = req.params.id;
+        const selectedDate = req.query.date;
+
+        console.log(
+            `Checking availability for barber ${barberId} on ${selectedDate}`
+        );
+
+
+        // Check that a date was supplied
+        if (!selectedDate) {
 
             return res.status(400).json({
-                message: "Date is required"
+                error: "Date is required"
             });
+
         }
 
-        const result = await pool.query(`
-            SELECT
-                a.id,
-                a.date,
-                a.time
-            FROM availability a
-            WHERE a.barber_id = $1
-            AND a.date = $2
 
+        // Get available slots
+        const result = await pool.query(
+            `
+            SELECT 
+                id,
+                barber_id,
+                date,
+                time
+            FROM availability
+            WHERE barber_id = $1
+            AND date = $2
             AND NOT EXISTS (
                 SELECT 1
-                FROM appointments ap
-                WHERE ap.barber_id = a.barber_id
-                AND ap.appointment_date = a.date
-                AND ap.appointment_time = a.time
+                FROM appointments
+                WHERE appointments.barber_id = availability.barber_id
+                AND appointments.appointment_date = availability.date
+                AND appointments.appointment_time = availability.time
             )
+            ORDER BY time
+            `,
+            [barberId, selectedDate]
+        );
 
-            ORDER BY a.time
-        `, [barberId, date]);
 
+        console.log("Available slots:", result.rows);
+
+
+        // Send the array to React
         res.json(result.rows);
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error("AVAILABILITY ERROR:", error);
 
         res.status(500).json({
-            message: "Unable to load availability"
+            error: "Failed to load availability",
+            details: error.message
         });
     }
 });
+
 
 module.exports = router;

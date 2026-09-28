@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 
+import Login from "./Login";
+import BarberDashboard from "./BarberDashboard";
+import AdminDashboard from "./AdminDashboard";
+import {
+    downloadCalendarEvent
+} from "./calendarUtils";
+
+
 
 // ============================================
 // API URL
@@ -37,7 +45,7 @@ const hairstyles = [
         name: "Classic Cut",
         price: 150,
         image:
-            "https://images.unsplash.com/photo-1599351431202-1e0f0f0c4d3e?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1703792686383-4f307cbfa544?auto=format&fit=crop&w=700&q=80"
     },
 
     {
@@ -49,6 +57,139 @@ const hairstyles = [
     }
 
 ];
+
+
+// ============================================
+// BARBER FACE IMAGES
+// ============================================
+// These are frontend fallbacks so the staff faces still appear
+// even when the database image_url field is empty or broken.
+
+const barberImages = {
+
+    John:
+        "/images/barbers/john.png",
+
+    Mike:
+        "/images/barbers/mike.png",
+
+    David:
+        "/images/barbers/david.png"
+
+};
+
+const getBarberImage = (barber) => {
+
+    return barberImages[barber?.name] ||
+        "https://randomuser.me/api/portraits/men/75.jpg";
+
+};
+
+
+// ============================================
+// CALENDAR EVENT HELPER
+// ============================================
+
+// const downloadCalendarEvent = ({
+//     appointmentDate,
+//     appointmentTime,
+//     barberName,
+//     hairstyle,
+//     price,
+//     customerName,
+//     customerEmail
+// }) => {
+
+//     if (!appointmentDate || !appointmentTime) {
+//         alert("The appointment date or time is missing.");
+//         return;
+//     }
+
+//     const timeParts = String(appointmentTime)
+//         .substring(0, 5)
+//         .split(":");
+
+//     const hours = Number(timeParts[0]);
+//     const minutes = Number(timeParts[1]);
+
+//     const startDate = new Date(
+//         `${appointmentDate}T${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00`
+//     );
+
+//     if (Number.isNaN(startDate.getTime())) {
+//         alert("The appointment date or time is invalid.");
+//         return;
+//     }
+
+//     // Big Mash uses 30-minute appointment slots.
+//     const endDate = new Date(
+//         startDate.getTime() + 30 * 60 * 1000
+//     );
+
+//     const formatCalendarDate = (date) => {
+
+//         const year = date.getFullYear();
+//         const month = String(date.getMonth() + 1).padStart(2, "0");
+//         const day = String(date.getDate()).padStart(2, "0");
+//         const hour = String(date.getHours()).padStart(2, "0");
+//         const minute = String(date.getMinutes()).padStart(2, "0");
+//         const second = String(date.getSeconds()).padStart(2, "0");
+
+//         return `${year}${month}${day}T${hour}${minute}${second}`;
+//     };
+
+//     const escapeICS = (value) =>
+//         String(value || "")
+//             .replace(/\\/g, "\\\\")
+//             .replace(/;/g, "\\;")
+//             .replace(/,/g, "\\,")
+//             .replace(/\r?\n/g, "\\n");
+
+//     const location =
+//         "Shop 30B, Nelson Mandela Square, 5th Street, Sandton, Gauteng, 2031, South Africa";
+
+//     const description =
+//         `Service: ${hairstyle || "Haircut"}\n` +
+//         `Barber: ${barberName || "Big Mash Barber"}\n` +
+//         `Price: R${price || 0}\n` +
+//         `Customer: ${customerName || "Customer"}\n` +
+//         `Email: ${customerEmail || "Not provided"}`;
+
+//     const calendarContent = [
+//         "BEGIN:VCALENDAR",
+//         "VERSION:2.0",
+//         "PRODID:-//Big Mash Barber Shop//Booking//EN",
+//         "CALSCALE:GREGORIAN",
+//         "METHOD:PUBLISH",
+//         "BEGIN:VEVENT",
+//         `UID:big-mash-${Date.now()}@bigmash.co.za`,
+//         `DTSTART:${formatCalendarDate(startDate)}`,
+//         `DTEND:${formatCalendarDate(endDate)}`,
+//         `SUMMARY:${escapeICS(`Big Mash Barber Shop - ${hairstyle || "Haircut"}`)}`,
+//         `DESCRIPTION:${escapeICS(description)}`,
+//         `LOCATION:${escapeICS(location)}`,
+//         "STATUS:CONFIRMED",
+//         "END:VEVENT",
+//         "END:VCALENDAR"
+//     ].join("\r\n");
+
+//     const blob = new Blob(
+//         [calendarContent],
+//         { type: "text/calendar;charset=utf-8" }
+//     );
+
+//     const url = URL.createObjectURL(blob);
+//     const link = document.createElement("a");
+
+//     link.href = url;
+//     link.download = "big-mash-barber-appointment.ics";
+
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+
+//     URL.revokeObjectURL(url);
+// };
 
 
 // ============================================
@@ -112,6 +253,13 @@ function App() {
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
+    // Footer/legal/newsletter modal state.
+    const [showNewsletter, setShowNewsletter] = useState(false);
+    const [showTerms, setShowTerms] = useState(false);
+    const [showPrivacy, setShowPrivacy] = useState(false);
+    const [newsletterEmail, setNewsletterEmail] = useState("");
+    const [newsletterMessage, setNewsletterMessage] = useState("");
+
 
     // ============================================
     // LOAD BARBERS
@@ -141,6 +289,67 @@ function App() {
 
 
     // ============================================
+    // NEWSLETTER POPUP
+    // ============================================
+
+    useEffect(() => {
+
+        const popupClosed =
+            localStorage.getItem("bigMashNewsletterClosed");
+
+        if (popupClosed === "true") {
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            setShowNewsletter(true);
+        }, 1200);
+
+        return () => clearTimeout(timer);
+
+    }, []);
+
+
+    const closeNewsletter = () => {
+
+        setShowNewsletter(false);
+
+        localStorage.setItem(
+            "bigMashNewsletterClosed",
+            "true"
+        );
+
+    };
+
+
+    const subscribeToNewsletter = (event) => {
+
+        event.preventDefault();
+
+        if (!newsletterEmail) {
+            setNewsletterMessage(
+                "Please enter your email address."
+            );
+            return;
+        }
+
+        setNewsletterMessage(
+            "Thanks! You are on the Big Mash list."
+        );
+
+        localStorage.setItem(
+            "bigMashNewsletterClosed",
+            "true"
+        );
+
+        setTimeout(() => {
+            setShowNewsletter(false);
+        }, 900);
+
+    };
+
+
+    // ============================================
     // SELECT BARBER
     // ============================================
 
@@ -167,40 +376,79 @@ function App() {
     // SELECT DATE
     // ============================================
 
-    const chooseDate = async (date) => {
+const chooseDate = async (date) => {
 
-        setSelectedDate(date);
+    setSelectedDate(date);
+    setSelectedTime("");
+    setSlots([]);
 
-        setSelectedTime("");
+    if (!selectedBarber) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/barbers/${selectedBarber.id}/availability?date=${date}`
+        );
+
+
+        const data = await response.json();
+
+
+        // Check if the backend returned an error
+        if (!response.ok) {
+
+            console.error("Availability error:", data);
+
+            setSlots([]);
+
+            setMessage(
+                data.details || "Unable to load available times."
+            );
+
+            return;
+        }
+
+
+        // Make sure the response is an array
+        if (!Array.isArray(data)) {
+
+            console.error(
+                "Invalid availability response:",
+                data
+            );
+
+            setSlots([]);
+
+            setMessage(
+                "Invalid availability response from the server."
+            );
+
+            return;
+        }
+
+
+        // Everything is okay
+        setSlots(data);
 
         setMessage("");
 
-        if (!selectedBarber) {
 
-            return;
+    } catch (error) {
 
-        }
+        console.error(
+            "Failed to load availability:",
+            error
+        );
 
+        setSlots([]);
 
-        try {
-
-            const response = await fetch(
-                `${API_URL}/barbers/${selectedBarber.id}/availability?date=${date}`
-            );
-
-            const data = await response.json();
-
-            setSlots(data);
-
-        } catch (error) {
-
-            console.error(error);
-
-            setMessage("Unable to load available times.");
-
-        }
-
-    };
+        setMessage(
+            "Could not connect to the booking server."
+        );
+    }
+};
 
 
     // ============================================
@@ -362,10 +610,12 @@ function App() {
             // ----------------------------------------
             // Save booking
             // ----------------------------------------
+            // The backend returns the actual appointment
+            // inside data.appointment.
 
             setBooking({
 
-                ...data,
+                ...data.appointment,
 
                 barber_name: selectedBarber.name
 
@@ -985,8 +1235,12 @@ function App() {
                             <div className="image-wrapper">
 
                                 <img
-                                    src={barber.image_url}
-                                    alt={barber.name}
+                                    src={getBarberImage(barber)}
+                                    alt={`${barber.name} barber face`}
+                                    onError={(event) => {
+                                        event.currentTarget.src =
+                                            "https://randomuser.me/api/portraits/men/75.jpg";
+                                    }}
                                 />
 
                             </div>
@@ -1677,6 +1931,24 @@ function App() {
 
 
                             <button
+                                className="calendar-button"
+                                onClick={() =>
+                                    downloadCalendarEvent({
+                                        appointmentDate: booking.appointment_date,
+                                        appointmentTime: booking.appointment_time,
+                                        barberName: booking.barber_name,
+                                        hairstyle: booking.hairstyle,
+                                        price: booking.price,
+                                        customerName: booking.customer_name,
+                                        customerEmail: booking.customer_email
+                                    })
+                                }
+                            >
+                                📅 Add to Calendar
+                            </button>
+
+
+                            <button
                                 className="new-booking-button"
                                 onClick={startNewBooking}
                             >
@@ -1693,7 +1965,7 @@ function App() {
 
 
             {/* =====================================
-                FOOTER
+                PROFESSIONAL FOOTER
             ====================================== */}
 
             <footer>
@@ -1707,38 +1979,12 @@ function App() {
                         </h2>
 
                         <p>
-                            Premium cuts.
-                            <br />
+                            Premium cuts.<br />
                             Sharp confidence.
                         </p>
 
-                    </div>
-
-
-                    <div className="footer-column">
-
-                        <h4>
-                            LOCATION
-                        </h4>
-
-                        <p>
-                            Shop 30B
-                        </p>
-
-                        <p>
-                            Nelson Mandela Square
-                        </p>
-
-                        <p>
-                            5th Street, Sandton
-                        </p>
-
-                        <p>
-                            Gauteng, 2031
-                        </p>
-
-                        <p>
-                            South Africa
+                        <p className="footer-tagline">
+                            Modern barbering and a premium grooming experience.
                         </p>
 
                     </div>
@@ -1746,24 +1992,84 @@ function App() {
 
                     <div className="footer-column">
 
-                        <h4>
-                            QUICK LINKS
-                        </h4>
+                        <h4>LOCATION</h4>
 
-                        <a href="#home">
-                            Home
+                        <p>Shop 30B</p>
+                        <p>Nelson Mandela Square</p>
+                        <p>5th Street, Sandton</p>
+                        <p>Gauteng, 2031</p>
+                        <p>South Africa</p>
+
+                    </div>
+
+
+                    <div className="footer-column">
+
+                        <h4>OPENING HOURS</h4>
+
+                        <p>Monday - Friday: 09:00 - 18:00</p>
+                        <p>Saturday: 09:00 - 16:00</p>
+                        <p>Sunday: 10:00 - 15:00</p>
+
+                        <a href="#booking" className="footer-book-link">
+                            Book an Appointment →
                         </a>
 
-                        <a href="#barbers">
-                            Barbers
+                    </div>
+
+
+                    <div className="footer-column">
+
+                        <h4>QUICK LINKS</h4>
+
+                        <a href="#home">Home</a>
+                        <a href="#barbers">Barbers</a>
+                        <a href="#styles">Hairstyles</a>
+                        <a href="#booking">Book Now</a>
+
+                    </div>
+
+
+                    <div className="footer-column">
+
+                        <h4>CONNECT</h4>
+
+                        <a
+                            href="https://www.facebook.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Facebook ↗
                         </a>
 
-                        <a href="#styles">
-                            Hairstyles
+                        <a
+                            href="https://www.tiktok.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            TikTok ↗
                         </a>
 
-                        <a href="#booking">
-                            Book Now
+                        <h4 className="legal-heading">LEGAL</h4>
+
+                        <a
+                            href="#terms"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setShowTerms(true);
+                            }}
+                        >
+                            Terms & Conditions
+                        </a>
+
+                        <a
+                            href="#privacy"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setShowPrivacy(true);
+                            }}
+                        >
+                            Privacy Notice
                         </a>
 
                     </div>
@@ -1782,10 +2088,446 @@ function App() {
 
             </footer>
 
+
+            {/* ====================================================
+                NEWSLETTER POPUP
+            ==================================================== */}
+
+            {showNewsletter && (
+
+                <div
+                    className="modal-overlay newsletter-overlay"
+                    onClick={closeNewsletter}
+                >
+
+                    <div
+                        className="newsletter-modal"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+
+                        <button
+                            className="modal-close"
+                            onClick={closeNewsletter}
+                            aria-label="Close newsletter popup"
+                        >
+                            ×
+                        </button>
+
+                        <p className="popup-label">BIG MASH NEWS</p>
+
+                        <h2>Stay Fresh With Us</h2>
+
+                        <p>
+                            Join the Big Mash newsletter for new hairstyle
+                            inspiration, booking announcements and special
+                            grooming offers.
+                        </p>
+
+                        <form onSubmit={subscribeToNewsletter}>
+
+                            <input
+                                type="email"
+                                placeholder="Your email address"
+                                value={newsletterEmail}
+                                onChange={(event) =>
+                                    setNewsletterEmail(event.target.value)
+                                }
+                                aria-label="Email address"
+                            />
+
+                            <button type="submit" className="popup-book-button">
+                                Subscribe
+                            </button>
+
+                        </form>
+
+                        {newsletterMessage && (
+                            <p className="newsletter-message">
+                                {newsletterMessage}
+                            </p>
+                        )}
+
+                        <button
+                            className="popup-dismiss"
+                            onClick={closeNewsletter}
+                        >
+                            No thanks
+                        </button>
+
+                    </div>
+
+                </div>
+
+            )}
+
+
+            {/* ====================================================
+                TERMS & CONDITIONS
+            ==================================================== */}
+
+            {showTerms && (
+
+                <div
+                    className="modal-overlay"
+                    onClick={() => setShowTerms(false)}
+                >
+
+                    <div
+                        className="legal-modal"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+
+                        <button
+                            className="modal-close legal-close"
+                            onClick={() => setShowTerms(false)}
+                            aria-label="Close Terms and Conditions"
+                        >
+                            ×
+                        </button>
+
+                        <p className="legal-label">LEGAL</p>
+                        <h2>Terms & Conditions</h2>
+
+                        <p className="legal-intro">
+                            These terms explain how the Big Mash Barber Shop
+                            online booking service is intended to be used.
+                        </p>
+
+                        <div className="legal-section">
+                            <h3>1. Appointments</h3>
+                            <p>
+                                Customers may select an available barber,
+                                service, date and time through the booking
+                                system. A booking is confirmed only after
+                                the system successfully accepts the
+                                appointment.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>2. Customer Details</h3>
+                            <p>
+                                Customers must provide accurate information
+                                when making a booking. This includes the
+                                customer's name and phone number and, where
+                                provided, an email address.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>3. Services and Prices</h3>
+                            <p>
+                                The services and prices displayed on the
+                                website are the services and prices made
+                                available through the booking system at the
+                                time of booking. Big Mash may update its
+                                service list and pricing when required.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>4. Appointment Times</h3>
+                            <p>
+                                Customers should arrive on time for their
+                                selected appointment. Available times are
+                                based on the slots shown by the booking
+                                system.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>5. Payment</h3>
+                            <p>
+                                The payment feature in this assessment
+                                application is simulated. No real card or
+                                cash transaction is processed by the demo
+                                payment form.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>6. Cancellations and Changes</h3>
+                            <p>
+                                If an appointment needs to be changed or
+                                cancelled, the customer should contact the
+                                barber shop using the contact details made
+                                available by the business.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>7. Consumer Protection</h3>
+                            <p>
+                                Services are intended to be provided in
+                                accordance with applicable South African
+                                consumer-protection requirements. Nothing
+                                in these terms is intended to remove a
+                                consumer right that cannot lawfully be
+                                excluded.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>8. Personal Information</h3>
+                            <p>
+                                Personal information supplied through the
+                                booking system is intended for appointment
+                                administration and related customer
+                                communication. The handling of personal
+                                information should comply with applicable
+                                South African privacy requirements.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>9. Website Use</h3>
+                            <p>
+                                Users must not intentionally interfere with
+                                the security, availability or normal
+                                operation of the booking website.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>10. Contact</h3>
+                            <p>
+                                Big Mash Barber Shop<br />
+                                Shop 30B, Nelson Mandela Square<br />
+                                5th Street, Sandton, Gauteng, 2031<br />
+                                South Africa
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            )}
+
+
+            {/* ====================================================
+                PRIVACY NOTICE
+            ==================================================== */}
+
+            {showPrivacy && (
+
+                <div
+                    className="modal-overlay"
+                    onClick={() => setShowPrivacy(false)}
+                >
+
+                    <div
+                        className="legal-modal"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+
+                        <button
+                            className="modal-close legal-close"
+                            onClick={() => setShowPrivacy(false)}
+                            aria-label="Close Privacy Notice"
+                        >
+                            ×
+                        </button>
+
+                        <p className="legal-label">LEGAL</p>
+                        <h2>Privacy Notice</h2>
+
+                        <p className="legal-intro">
+                            This notice explains the information used by the
+                            Big Mash online booking experience.
+                        </p>
+
+                        <div className="legal-section">
+                            <h3>Information Collected</h3>
+                            <p>
+                                The booking form may collect your name, phone
+                                number, email address, selected barber,
+                                hairstyle, appointment date and appointment
+                                time.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>Purpose</h3>
+                            <p>
+                                The information is used to create and manage
+                                appointments, identify the customer linked to
+                                a booking and communicate about the booking
+                                where necessary.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>Marketing</h3>
+                            <p>
+                                The newsletter popup is optional. Customers
+                                can close it or choose not to subscribe. A
+                                newsletter subscription should only be used
+                                for the communication described when the
+                                customer subscribes.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>Protection</h3>
+                            <p>
+                                Appropriate technical and organisational
+                                measures should be used to protect personal
+                                information against unauthorised access,
+                                loss, misuse or disclosure.
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>South African Privacy Law</h3>
+                            <p>
+                                Personal information should be handled in
+                                accordance with applicable South African
+                                privacy requirements, including the
+                                Protection of Personal Information Act
+                                (POPIA).
+                            </p>
+                        </div>
+
+                        <div className="legal-section">
+                            <h3>Contact</h3>
+                            <p>
+                                For questions about information submitted
+                                through the booking system, contact Big Mash
+                                Barber Shop at the shop address shown in the
+                                footer.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            )}
+
         </div>
 
     );
 
 }
+
+// ============================================================
+// STAFF APP ROUTER
+// ============================================================
+// Public customers stay on the original Big Mash homepage.
+// Staff members use /login and /dashboard.
+// Barber Dashboard remains view-only.
+// Super Admin keeps full admin access.
+// ============================================================
+
+export function StaffApp() {
+
+    const [user, setUser] = useState(() => {
+
+        const savedUser = localStorage.getItem("user");
+
+        return savedUser
+            ? JSON.parse(savedUser)
+            : null;
+
+    });
+
+    const [currentPath, setCurrentPath] =
+        useState(window.location.pathname);
+
+
+    useEffect(() => {
+
+        const handlePopState = () => {
+            setCurrentPath(window.location.pathname);
+        };
+
+        window.addEventListener(
+            "popstate",
+            handlePopState
+        );
+
+        return () => {
+            window.removeEventListener(
+                "popstate",
+                handlePopState
+            );
+        };
+
+    }, []);
+
+
+    const goTo = (path) => {
+
+        window.history.pushState({}, "", path);
+
+        setCurrentPath(path);
+
+    };
+
+
+    const handleLogin = (loggedInUser) => {
+
+        setUser(loggedInUser);
+        goTo("/dashboard");
+
+    };
+
+
+    const handleLogout = () => {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setUser(null);
+
+        goTo("/");
+
+    };
+
+
+    if (currentPath === "/" || currentPath === "/book") {
+        return <App />;
+    }
+
+
+    if (currentPath === "/login") {
+        return <Login onLogin={handleLogin} />;
+    }
+
+
+    if (currentPath === "/dashboard") {
+
+        if (user?.role === "BARBER") {
+
+            return (
+                <BarberDashboard
+                    user={user}
+                    onLogout={handleLogout}
+                />
+            );
+
+        }
+
+        if (user?.role === "SUPER_ADMIN") {
+
+            return (
+                <AdminDashboard
+                    user={user}
+                    onLogout={handleLogout}
+                />
+            );
+
+        }
+
+        return <Login onLogin={handleLogin} />;
+
+    }
+
+
+    return <App />;
+
+}
+
 
 export default App;

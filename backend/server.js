@@ -7,6 +7,11 @@ const cors = require("cors");
 
 const barberRoutes = require("./routes/barberRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const staffRoutes = require("./routes/staffRoutes");
+
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
@@ -41,6 +46,13 @@ app.use("/api/barbers", barberRoutes);
 
 app.use("/api/appointments", appointmentRoutes);
 
+app.use("/api/users", userRoutes);
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/staff", staffRoutes);
+
+app.use("/api/admin", adminRoutes);
 
 // ============================================
 // START SERVER

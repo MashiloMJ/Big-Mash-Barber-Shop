@@ -918,6 +918,1531 @@ footer {
     font-size: 13px;
 }
 
+/* ============================= */
+/* LOGIN PAGE */
+/* ============================= */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.login-card h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.login-card button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.login-error {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background: #ffe5e5;
+    color: #b00020;
+}
+
+/* ================================= */
+/* STAFF DASHBOARD */
+/* ================================= */
+
+.staff-dashboard {
+    min-height: 100vh;
+    padding: 30px;
+    background: #f5f5f5;
+    box-sizing: border-box;
+}
+
+
+/* Dashboard header */
+
+.dashboard-header {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #111;
+    color: white;
+
+    padding: 25px 30px;
+    border-radius: 12px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 5px;
+}
+
+.dashboard-header p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+.dashboard-header button {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* Dashboard cards */
+
+.dashboard-card {
+    max-width: 1200px;
+
+    margin: 0 auto 25px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h2 {
+    margin-top: 0;
+}
+
+
+/* Appointments table */
+
+.appointments-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.appointments-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.appointments-table th {
+    background: #f2f2f2;
+    font-weight: 600;
+}
+
+
+/* Error */
+
+.dashboard-error {
+    padding: 12px;
+
+    background: #ffe5e5;
+
+    color: #b00020;
+
+    border-radius: 7px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .staff-dashboard {
+        padding: 15px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .dashboard-header button {
+        width: 100%;
+    }
+
+}
+
+
+/* ================================= */
+/* BARBER AVAILABILITY */
+/* ================================= */
+
+.dashboard-description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+/* Date selector */
+
+.availability-date {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.availability-date label {
+    font-weight: 600;
+}
+
+.availability-date input {
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+
+/* Availability slots */
+
+.availability-slots {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(150px, 1fr));
+
+    gap: 12px;
+}
+
+
+/* Individual slot */
+
+.availability-slot {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ddd;
+}
+
+
+/* Available slot */
+
+.availability-slot.available {
+    background: #f1f8f3;
+}
+
+
+/* Booked slot */
+
+.availability-slot.booked {
+    background: #fff1f1;
+}
+
+
+.availability-slot strong {
+    font-size: 12px;
+}
+
+
+/* ================================= */
+/* BARBER APPOINTMENTS */
+/* ================================= */
+
+.appointments-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.appointments-heading h2 {
+    margin-bottom: 8px;
+}
+
+.appointment-count {
+    padding: 8px 14px;
+
+    background: #f5f5f5;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* Empty appointments */
+
+.empty-appointments {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #777;
+
+    background: #f8f8f8;
+
+    border-radius: 8px;
+}
+
+
+/* Table */
+
+.appointments-table {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #eee;
+
+    border-radius: 8px;
+}
+
+
+.appointments-table table {
+    width: 100%;
+
+    min-width: 850px;
+
+    border-collapse: collapse;
+}
+
+
+.appointments-table th,
+.appointments-table td {
+    padding: 14px 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.appointments-table th {
+    background: #111;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.appointments-table td {
+    font-size: 14px;
+
+    background: white;
+}
+
+
+.appointments-table tbody tr:hover td {
+    background: #fafafa;
+}
+
+
+.appointments-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Status badge */
+
+.appointment-status {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: capitalize;
+}
+
+
+/* Confirmed */
+
+.appointment-status.confirmed {
+    background: #e8f5e9;
+
+    color: #237a32;
+}
+
+
+/* Pending */
+
+.appointment-status.pending {
+    background: #fff7df;
+
+    color: #8a6500;
+}
+
+
+/* Cancelled */
+
+.appointment-status.cancelled {
+    background: #ffe8e8;
+
+    color: #a00000;
+}
+
+
+/* Dashboard mobile */
+
+@media (max-width: 650px) {
+
+    .appointments-heading {
+        flex-direction: column;
+    }
+
+    .appointment-count {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* ============================================
+   SUPER ADMIN DASHBOARD
+============================================ */
+
+.admin-dashboard {
+    min-height: 100vh;
+
+    padding: 40px;
+
+    background: #f5f5f5;
+
+    color: #111;
+}
+
+
+/* ============================================
+   ADMIN HEADER
+============================================ */
+
+.admin-header {
+    width: min(1200px, 100%);
+
+    margin: 0 auto 30px;
+
+    padding: 35px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.admin-label {
+    margin: 0 0 8px;
+
+    color: #d7a84b;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.admin-header h1 {
+    margin: 0 0 10px;
+
+    font-size: 36px;
+
+    font-weight: 900;
+}
+
+.admin-header p {
+    margin: 0;
+
+    color: #bbb;
+}
+
+
+/* ============================================
+   ADMIN BUTTON
+============================================ */
+
+.admin-refresh-button {
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #d7a84b;
+
+    color: #111;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+.admin-refresh-button:hover {
+    background: #c3953b;
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================
+   ADMIN STATISTICS
+============================================ */
+
+.admin-statistics {
+    width: min(1200px, 100%);
+
+    margin: 0 auto 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.admin-stat-card {
+    padding: 28px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #eee;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-stat-card span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.admin-stat-card strong {
+    display: block;
+
+    color: #111;
+
+    font-size: 38px;
+
+    font-weight: 900;
+}
+
+
+/* ============================================
+   ADMIN SECTION
+============================================ */
+
+.admin-section {
+    width: min(1200px, 100%);
+
+    margin: 0 auto 30px;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-section-heading {
+    margin-bottom: 25px;
+}
+
+.admin-section-heading h2 {
+    margin: 0 0 7px;
+
+    font-size: 26px;
+
+    font-weight: 900;
+}
+
+.admin-section-heading p {
+    margin: 0;
+
+    color: #777;
+}
+
+
+/* ============================================
+   ADMIN BARBERS
+============================================ */
+
+.admin-barber-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.admin-barber-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border: 1px solid #eee;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+    transition: 0.3s;
+}
+
+.admin-barber-card:hover {
+    border-color: #d7a84b;
+
+    transform: translateY(-3px);
+}
+
+.admin-barber-avatar {
+    width: 55px;
+
+    height: 55px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    color: #d7a84b;
+
+    font-size: 21px;
+
+    font-weight: 900;
+}
+
+.admin-barber-card h3 {
+    margin: 0 0 5px;
+
+    font-size: 18px;
+}
+
+.admin-barber-card p {
+    margin: 0;
+
+    color: #b88632;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* ============================================
+   ADMIN TABLE
+============================================ */
+
+.admin-table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #eee;
+
+    border-radius: 8px;
+}
+
+.admin-table {
+    width: 100%;
+
+    min-width: 950px;
+
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+    background: #111;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.admin-table td {
+    background: white;
+
+    font-size: 14px;
+}
+
+.admin-table tbody tr:hover td {
+    background: #fafafa;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table td strong {
+    display: block;
+}
+
+.admin-table td small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+/* ============================================
+   ADMIN AVAILABILITY
+============================================ */
+
+.admin-availability-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.admin-availability-card {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 18px;
+
+    border: 1px solid #eee;
+
+    border-radius: 9px;
+
+    background: #fafafa;
+}
+
+.admin-availability-card strong {
+    color: #111;
+
+    font-size: 15px;
+}
+
+.admin-availability-card span {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.admin-availability-card span:last-child {
+    color: #b88632;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+/* ============================================
+   ADMIN LOADING
+============================================ */
+
+.admin-loading {
+    min-height: 70vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+/* ============================================
+   ADMIN ERROR
+============================================ */
+
+.admin-error {
+    width: min(600px, 100%);
+
+    margin: 80px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.admin-error h2 {
+    margin-top: 0;
+}
+
+.admin-error p {
+    color: #a00000;
+
+    margin-bottom: 20px;
+}
+
+
+/* ============================================
+   ADMIN EMPTY MESSAGE
+============================================ */
+
+.admin-empty-message {
+    padding: 35px !important;
+
+    text-align: center !important;
+
+    color: #777;
+}
+
+/* ==========================================
+   ADMIN HEADER BUTTONS
+========================================== */
+
+.admin-header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+
+/* Logout button */
+
+.admin-logout-button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #111;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-logout-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .admin-header-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-header-actions button {
+        width: 100%;
+    }
+
+}
+
+/* ============================================
+   ADMIN RESPONSIVE
+============================================ */
+
+@media (max-width: 900px) {
+
+    .admin-dashboard {
+        padding: 25px;
+    }
+
+    .admin-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .admin-refresh-button {
+        width: 100%;
+    }
+
+    .admin-statistics {
+        grid-template-columns:
+            1fr;
+    }
+
+    .admin-barber-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .admin-availability-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-dashboard {
+        padding: 15px;
+    }
+
+    .admin-header {
+        padding: 25px;
+    }
+
+    .admin-header h1 {
+        font-size: 28px;
+    }
+
+    .admin-section {
+        padding: 20px;
+    }
+
+    .admin-barber-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .admin-availability-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+
+/* ==========================================
+   ADMIN LAYOUT
+========================================== */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   ADMIN SIDEBAR
+========================================== */
+
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #111;
+    color: white;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: sticky;
+    top: 0;
+}
+
+
+/* ==========================================
+   SIDEBAR BRAND
+========================================== */
+
+.admin-sidebar-brand {
+    margin-bottom: 40px;
+}
+
+.admin-sidebar-brand h2 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.admin-sidebar-brand h2 span {
+    color: #d4af37;
+}
+
+.admin-sidebar-brand p {
+    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+
+/* ==========================================
+   SIDEBAR NAVIGATION
+========================================== */
+
+.admin-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-sidebar-nav a {
+    color: #ddd;
+    text-decoration: none;
+
+    padding: 13px 15px;
+
+    border-radius: 8px;
+
+    transition: 0.2s ease;
+}
+
+.admin-sidebar-nav a:hover {
+    background: #222;
+    color: white;
+}
+
+
+/* ==========================================
+   SIDEBAR FOOTER
+========================================== */
+
+.admin-sidebar-footer {
+    margin-top: auto;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+}
+
+.admin-sidebar-footer p {
+    margin: 0 0 5px;
+    font-weight: 600;
+}
+
+.admin-sidebar-footer span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================
+   SIDEBAR LOGOUT
+========================================== */
+
+.admin-sidebar-logout {
+    width: 100%;
+
+    border: 1px solid #444;
+
+    background: transparent;
+    color: white;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-sidebar-logout:hover {
+    background: #222;
+}
+
+
+/* ==========================================
+   ADMIN MAIN CONTENT
+========================================== */
+
+.admin-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================================
+   ADMIN MOBILE LAYOUT
+========================================== */
+
+@media (max-width: 800px) {
+
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: auto;
+        min-height: auto;
+
+        position: relative;
+
+        padding: 20px;
+    }
+
+    .admin-sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .admin-sidebar-nav a {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+
+    .admin-sidebar-footer {
+        margin-top: 25px;
+    }
+
+}
+
+/* ==========================================
+   ADMIN BARBER MANAGEMENT
+========================================== */
+
+.admin-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ==========================================
+   ADD BARBER BUTTON
+========================================== */
+
+.admin-add-button {
+    border: none;
+    background: #111;
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-add-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+/* ==========================================
+   BARBER FORM
+========================================== */
+
+.admin-barber-form {
+    background: #f7f7f7;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+}
+
+.admin-barber-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 16px;
+}
+
+.admin-form-group label {
+    font-weight: 600;
+}
+
+.admin-form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.admin-form-group input:focus {
+    border-color: #111;
+}
+
+
+/* ==========================================
+   FORM ACTIONS
+========================================== */
+
+.admin-form-actions {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* ==========================================
+   SAVE BUTTON
+========================================== */
+
+.admin-save-button {
+    border: none;
+
+    background: #111;
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.admin-save-button:hover {
+    opacity: 0.85;
+}
+
+
+/* ==========================================
+   CANCEL BUTTON
+========================================== */
+
+.admin-cancel-button {
+    border: 1px solid #ccc;
+
+    background: white;
+    color: #111;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.admin-cancel-button:hover {
+    background: #f1f1f1;
+}
+
+
+/* ==========================================
+   FORM ERROR
+========================================== */
+
+.admin-form-error {
+    color: #b00020;
+
+    background: #fff1f1;
+
+    border: 1px solid #f0caca;
+
+    border-radius: 7px;
+
+    padding: 10px 12px;
+
+    margin: 12px 0;
+}
+
+
+/* ==========================================
+   BARBER INFORMATION
+========================================== */
+
+.admin-barber-info {
+    flex: 1;
+}
+
+.admin-barber-info h3 {
+    margin-bottom: 5px;
+}
+
+.admin-barber-info p {
+    margin-top: 0;
+}
+
+
+/* ==========================================
+   BARBER ACTIONS
+========================================== */
+
+.admin-barber-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+/* ==========================================
+   EDIT BUTTON
+========================================== */
+
+.admin-edit-button {
+    border: 1px solid #ccc;
+
+    background: white;
+    color: #111;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.admin-edit-button:hover {
+    background: #f1f1f1;
+}
+
+
+/* ==========================================
+   DELETE BUTTON
+========================================== */
+
+.admin-delete-button {
+    border: none;
+
+    background: #111;
+    color: white;
+
+    padding: 8px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.admin-delete-button:hover {
+    opacity: 0.8;
+}
+
+
+/* ==========================================
+   DISABLED BUTTON
+========================================== */
+
+.admin-save-button:disabled,
+.admin-cancel-button:disabled,
+.admin-delete-button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================================================
+   CALENDAR BUTTON
+   ============================================================ */
+
+.calendar-button {
+    border: none;
+    background: #111;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.calendar-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.calendar-button:active {
+    transform: translateY(0);
+}
+
+
+
+/* ==========================================
+   MOBILE BARBER MANAGEMENT
+========================================== */
+
+@media (max-width: 700px) {
+
+    .admin-section-heading {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .admin-add-button {
+        width: 100%;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-save-button,
+    .admin-cancel-button {
+        width: 100%;
+    }
+
+    .admin-barber-actions {
+        flex-direction: column;
+    }
+
+    .admin-edit-button,
+    .admin-delete-button {
+        width: 100%;
+    }
+
+}
 
 /* ============================================
    RESPONSIVE
@@ -1040,6 +2565,850 @@ footer {
 
     .footer-content {
         grid-template-columns: 1fr;
+    }
+
+}
+
+/* ============================================================
+   BIG MASH BARBER SHOP
+   FOOTER + POPUP + TERMS MODAL
+   Add this at the END of App.css
+============================================================ */
+
+
+/* ============================================================
+   PROFESSIONAL FOOTER
+============================================================ */
+
+footer {
+    background: #080808;
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.footer-content {
+    width: min(1200px, 92%);
+    margin: auto;
+
+    padding: 70px 0 55px;
+
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+
+/* Brand */
+
+.footer-brand h2 {
+    margin: 0 0 18px;
+
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.footer-brand h2 span {
+    color: #d7a84b;
+}
+
+.footer-brand p {
+    color: #aaaaaa;
+    line-height: 1.7;
+}
+
+
+/* Footer columns */
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-column h4 {
+    margin: 0 0 12px;
+
+    color: #d7a84b;
+
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.footer-column p {
+    margin: 0;
+
+    color: #aaaaaa;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-column a {
+    width: fit-content;
+
+    color: #aaaaaa;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #d7a84b;
+    transform: translateX(3px);
+}
+
+
+/* Footer bottom */
+
+.footer-bottom {
+    border-top: 1px solid #222222;
+
+    padding: 22px 5%;
+
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   WELCOME POPUP
+============================================================ */
+
+.welcome-popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+/* Popup box */
+
+.welcome-popup {
+    position: relative;
+
+    width: min(500px, 100%);
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 45px 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.4);
+
+    animation: popupAppear 0.3s ease;
+}
+
+
+/* Popup animation */
+
+@keyframes popupAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Close button */
+
+.popup-close {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #555555;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.popup-close:hover {
+    color: #d7a84b;
+    transform: rotate(90deg);
+}
+
+
+/* Popup content */
+
+.popup-label {
+    margin: 0 0 10px;
+
+    color: #d7a84b;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.welcome-popup h2 {
+    margin: 0 0 15px;
+
+    color: #111111;
+
+    font-size: 34px;
+}
+
+.welcome-popup p {
+    margin: 0 auto 25px;
+
+    max-width: 400px;
+
+    color: #666666;
+
+    line-height: 1.7;
+}
+
+
+/* Popup booking button */
+
+.popup-book-button {
+    display: inline-block;
+
+    border: none;
+
+    background: #111111;
+    color: #ffffff;
+
+    padding: 14px 28px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.popup-book-button:hover {
+    background: #d7a84b;
+    color: #111111;
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   TERMS & CONDITIONS MODAL
+============================================================ */
+
+.terms-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2100;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+/* Terms box */
+
+.terms-modal {
+    position: relative;
+
+    width: min(850px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    border-radius: 12px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45);
+}
+
+
+/* Terms close button */
+
+.terms-close {
+    position: sticky;
+
+    float: right;
+
+    top: 0;
+
+    border: none;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.terms-close:hover {
+    background: #d7a84b;
+    color: #111111;
+}
+
+
+/* Terms heading */
+
+.terms-modal h2 {
+    margin-top: 0;
+
+    color: #111111;
+
+    font-size: 32px;
+}
+
+.terms-intro {
+    color: #666666;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* Terms sections */
+
+.terms-section {
+    margin-bottom: 25px;
+}
+
+.terms-section h3 {
+    margin-bottom: 8px;
+
+    color: #111111;
+
+    font-size: 18px;
+}
+
+.terms-section p {
+    margin: 0;
+
+    color: #555555;
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   MOBILE FOOTER
+============================================================ */
+
+@media (max-width: 900px) {
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .footer-content {
+        grid-template-columns: 1fr;
+
+        padding: 50px 0 40px;
+
+        gap: 35px;
+    }
+
+
+    .footer-brand h2 {
+        font-size: 24px;
+    }
+
+
+    .welcome-popup {
+        padding: 40px 25px;
+    }
+
+
+    .welcome-popup h2 {
+        font-size: 28px;
+    }
+
+
+    .terms-modal {
+        padding: 30px 22px;
+
+        max-height: 90vh;
+    }
+
+
+    .terms-modal h2 {
+        font-size: 26px;
+    }
+
+}
+
+/* ============================================================
+   BIG MASH BARBER SHOP
+   FOOTER + MODALS + IMAGE FIXES + CALENDAR BUTTON
+
+   Add this file's contents to the END of your existing App.css.
+   Do not delete your existing homepage CSS.
+============================================================ */
+
+/* ============================================================
+   BARBER FACE IMAGES
+============================================================ */
+
+.image-wrapper {
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+}
+
+
+/* ============================================================
+   PROFESSIONAL FOOTER
+============================================================ */
+
+footer {
+    background: #080808;
+    color: #ffffff;
+}
+
+.footer-content {
+    width: min(1250px, 92%);
+    margin: 0 auto;
+    padding: 70px 0 55px;
+
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1.15fr 0.9fr 1fr;
+    gap: 38px;
+}
+
+.footer-brand h2 {
+    margin: 0 0 18px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.footer-brand h2 span {
+    color: #d7a84b;
+}
+
+.footer-brand p {
+    margin: 0 0 12px;
+    color: #aaaaaa;
+    line-height: 1.7;
+}
+
+.footer-brand .footer-tagline {
+    max-width: 230px;
+    font-size: 13px;
+    color: #777777;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.footer-column h4 {
+    margin: 0 0 12px;
+    color: #d7a84b;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.footer-column p {
+    margin: 0;
+    color: #aaaaaa;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-column a {
+    color: #aaaaaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.25s ease;
+}
+
+.footer-column a:hover {
+    color: #d7a84b;
+    transform: translateX(3px);
+}
+
+.footer-column .footer-book-link {
+    margin-top: 12px;
+    color: #d7a84b;
+    font-weight: 700;
+}
+
+.footer-column .legal-heading {
+    margin-top: 18px;
+    margin-bottom: 2px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #222222;
+    padding: 22px 5%;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #777777;
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   CALENDAR BUTTON
+============================================================ */
+
+.calendar-button {
+    border: none;
+    background: #111111;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.calendar-button:hover {
+    background: #d7a84b;
+    color: #111111;
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   MODAL OVERLAY
+============================================================ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.78);
+}
+
+
+/* ============================================================
+   NEWSLETTER POPUP
+============================================================ */
+
+.newsletter-modal {
+    position: relative;
+    width: min(520px, 100%);
+
+    padding: 45px 40px;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #111111;
+    text-align: center;
+
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.45);
+    animation: bigMashPopup 0.3s ease;
+}
+
+@keyframes bigMashPopup {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #555555;
+
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.modal-close:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+.popup-label,
+.legal-label {
+    margin: 0 0 10px;
+    color: #b8862f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.newsletter-modal h2 {
+    margin: 0 0 14px;
+    font-size: 32px;
+}
+
+.newsletter-modal > p:not(.popup-label):not(.newsletter-message) {
+    margin: 0 auto 24px;
+    max-width: 410px;
+    color: #666666;
+    line-height: 1.7;
+}
+
+.newsletter-modal form {
+    display: flex;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 440px;
+}
+
+.newsletter-modal form input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+    padding: 13px 14px;
+    outline: none;
+}
+
+.newsletter-modal form input:focus {
+    border-color: #d7a84b;
+}
+
+.popup-book-button {
+    border: none;
+    border-radius: 7px;
+    padding: 13px 20px;
+    background: #111111;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.popup-book-button:hover {
+    background: #d7a84b;
+    color: #111111;
+}
+
+.newsletter-message {
+    margin: 15px 0 0;
+    color: #26734d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.popup-dismiss {
+    margin-top: 18px;
+    border: none;
+    background: transparent;
+    color: #777777;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.popup-dismiss:hover {
+    color: #111111;
+}
+
+
+/* ============================================================
+   TERMS + PRIVACY MODALS
+============================================================ */
+
+.legal-modal {
+    position: relative;
+    width: min(850px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+
+    padding: 45px;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #222222;
+
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.45);
+}
+
+.legal-modal h2 {
+    margin: 0 0 14px;
+    font-size: 32px;
+    color: #111111;
+}
+
+.legal-intro {
+    margin: 0 0 28px;
+    color: #666666;
+    line-height: 1.7;
+}
+
+.legal-section {
+    margin-bottom: 24px;
+}
+
+.legal-section h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    color: #111111;
+}
+
+.legal-section p {
+    margin: 0;
+    color: #555555;
+    line-height: 1.75;
+}
+
+.legal-close {
+    position: sticky;
+    float: right;
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 1050px) {
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 25px;
+        padding: 55px 0 45px;
+    }
+
+    .newsletter-modal {
+        padding: 40px 24px 30px;
+    }
+
+    .newsletter-modal h2 {
+        font-size: 27px;
+    }
+
+    .newsletter-modal form {
+        flex-direction: column;
+    }
+
+    .legal-modal {
+        max-height: 92vh;
+        padding: 35px 22px;
+    }
+
+    .legal-modal h2 {
+        font-size: 27px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand .footer-tagline {
+        max-width: 100%;
     }
 
 }
